@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Items - Ration Management</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>Officers Mess</span>
+                </div>
+                <nav class="main-nav">
+                    <div class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Data</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">
+                                <i class="fas fa-receipt"></i>
+                                Add CRV
+                            </a>
+                            <a href="add_items.html" class="dropdown-item active">
+                                <i class="fas fa-box"></i>
+                                Add Items
+                            </a>
+                            <a href="add_category.html" class="dropdown-item">
+                                <i class="fas fa-tags"></i>
+                                Add Category
+                            </a>
+                            <a href="add_vendor.html" class="dropdown-item">
+                                <i class="fas fa-truck"></i>
+                                Add Vendor
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transactions</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="view_crv.html" class="dropdown-item">
+                                <i class="fas fa-eye"></i>
+                                View CRV
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Feedback</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-box"></i> Add New Items</h1>
+                <p>Add items to the inventory master list</p>
+            </div>
+
+            <form id="addItemForm" class="crv-form">
+                <!-- Item Details Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-info-circle"></i> Item Details</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="itemName">Item Name <span class="required">*</span></label>
+                                <input type="text" id="itemName" name="item_name" class="form-control" 
+                                       placeholder="Enter item name..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemCode">Item Code <span class="required">*</span></label>
+                                <input type="text" id="itemCode" name="item_code" class="form-control" 
+                                       placeholder="Enter unique item code..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemCategory">Category <span class="required">*</span></label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="itemCategory" name="category" class="form-control searchable-dropdown" 
+                                           placeholder="Search category..." required>
+                                    <ul class="dropdown-list" id="categoryList"></ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rationType">Ration Type</label>
+                                <select id="rationType" name="ration_type" class="form-control">
+                                    <option value="">Select ration type...</option>
+                                    <option value="RATION">RATION</option>
+                                    <option value="GROCERY">GROCERY</option>
+                                    <option value="VEGETABLE">VEGETABLE</option>
+                                    <option value="FRUIT">FRUIT</option>
+                                    <option value="MEAT">MEAT</option>
+                                    <option value="FISH">FISH</option>
+                                    <option value="DAIRY">DAIRY</option>
+                                    <option value="BAKERY">BAKERY</option>
+                                    <option value="BEVERAGES">BEVERAGES</option>
+                                    <option value="STATIONARY">STATIONARY</option>
+                                    <option value="CLEANING">CLEANING</option>
+                                    <option value="MEDICAL">MEDICAL</option>
+                                    <option value="EQUIPMENT">EQUIPMENT</option>
+                                    <option value="MISCELLANEOUS">MISCELLANEOUS</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemUOM">Unit of Measurement (UOM) <span class="required">*</span></label>
+                                <select id="itemUOM" name="item_uom" class="form-control" required>
+                                    <option value="">Select UOM...</option>
+                                    <option value="KG">KG - Kilogram</option>
+                                    <option value="LITRE">LITRE - Litre</option>
+                                    <option value="PCS">PCS - Pieces</option>
+                                    <option value="BOX">BOX - Box</option>
+                                    <option value="PACKET">PACKET - Packet</option>
+                                    <option value="BOTTLE">BOTTLE - Bottle</option>
+                                    <option value="TIN">TIN - Tin</option>
+                                    <option value="BAG">BAG - Bag</option>
+                                    <option value="DOZEN">DOZEN - Dozen</option>
+                                    <option value="REAM">REAM - Ream</option>
+                                    <option value="METER">METER - Meter</option>
+                                    <option value="GRAM">GRAM - Gram</option>
+                                    <option value="ML">ML - Millilitre</option>
+                                    <option value="SET">SET - Set</option>
+                                    <option value="BUNDLE">BUNDLE - Bundle</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemRate">Rate (₹) <span class="required">*</span></label>
+                                <input type="number" id="itemRate" name="rate" class="form-control" 
+                                       step="0.01" min="0" placeholder="Enter rate per unit..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemDescription">Description</label>
+                                <textarea id="itemDescription" name="description" class="form-control" 
+                                          rows="3" placeholder="Enter item description..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="isActive">Status</label>
+                                <select id="isActive" name="is_active" class="form-control">
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="button" id="clearFormBtn" class="btn btn-secondary">
+                        <i class="fas fa-eraser"></i> Clear Form
+                    </button>
+                    <button type="submit" id="saveItemBtn" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save Item
+                    </button>
+                    <button type="button" id="viewItemsBtn" class="btn btn-info">
+                        <i class="fas fa-list"></i> View All Items
+                    </button>
+                </div>
+            </form>
+
+            <!-- Recent Items Section -->
+            <div class="form-section" style="margin-top: 2rem;">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> Recently Added Items</h2>
+                </div>
+                <div class="section-content">
+                    <div class="items-table-container">
+                        <table class="items-table" id="recentItemsTable">
+                            <thead>
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>UOM</th>
+                                    <th>Rate (₹)</th>
+                                    <th>Status</th>
+                                    <th>Added On</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentItemsBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 2rem;">
+                                        <i class="fas fa-box" style="font-size: 3rem; color: #bdc3c7;"></i>
+                                        <p style="margin-top: 1rem; color: #7f8c8d;">No recent items found</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <i class="fas fa-check-circle"></i>
+                <h3>Success!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Item added successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('successModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error</h3>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">An error occurred!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('errorModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/add_items.js"></script>
+</body>
+</html>

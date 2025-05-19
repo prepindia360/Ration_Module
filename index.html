@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ration Management - Officers Mess</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>Officers Mess</span>
+                </div>
+                <nav class="main-nav">
+                    <div class="nav-item" data-menu="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </div>
+                    
+                    <div class="nav-item dropdown" data-menu="add-data">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Data</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item active">
+                                <i class="fas fa-receipt"></i>
+                                Add CRV
+                            </a>
+                            <a href="add_items.html" class="dropdown-item">
+                                <i class="fas fa-box"></i>
+                                Add Items
+                            </a>
+                            <a href="add_category.html" class="dropdown-item">
+                                <i class="fas fa-tags"></i>
+                                Add Category
+                            </a>
+                            <a href="add_vendor.html" class="dropdown-item">
+                                <i class="fas fa-truck"></i>
+                                Add Vendor
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item dropdown" data-menu="transactions">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transactions</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="view_crv.html" class="dropdown-item">
+                                <i class="fas fa-eye"></i>
+                                View CRV
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item" data-menu="help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Feedback</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-receipt"></i> Cash Receipt Voucher</h1>
+                <p>Create and manage cash receipt vouchers for mess operations</p>
+            </div>
+
+            <form id="crvForm" class="crv-form">
+                <!-- Section 1: CRV Details -->
+                <div class="form-section" id="crvDetailsSection">
+                    <div class="section-header" onclick="toggleSection('crvDetails')">
+                        <h2><i class="fas fa-info-circle"></i> CRV Details</h2>
+                        <i class="fas fa-chevron-down toggle-icon" id="crvDetailsToggle"></i>
+                    </div>
+                    <div class="section-content" id="crvDetailsContent">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="category">Category <span class="required">*</span></label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="category" name="category" class="form-control searchable-dropdown" placeholder="Search category..." required>
+                                    <ul class="dropdown-list" id="categoryList"></ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="crvNumber">CRV Number</label>
+                                <input type="text" id="crvNumber" name="crv_number" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="crvDate">CRV Date</label>
+                                <input type="text" id="crvDate" name="crv_date" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supplierName">Supplier Name <span class="required">*</span></label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="supplierName" name="supplier_name" class="form-control searchable-dropdown" placeholder="Search supplier..." required>
+                                    <ul class="dropdown-list" id="supplierList"></ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supplierCode">Supplier Code</label>
+                                <input type="text" id="supplierCode" name="supplier_code" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="partyInvoiceNo">Party Invoice No.</label>
+                                <input type="text" id="partyInvoiceNo" name="party_invoice_no" class="form-control" placeholder="Enter invoice number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="partyInvoiceDate">Party Invoice Date</label>
+                                <input type="date" id="partyInvoiceDate" name="party_invoice_date" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="store">Store <span class="required">*</span></label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="store" name="store" class="form-control searchable-dropdown" placeholder="Search store..." required>
+                                    <ul class="dropdown-list" id="storeList"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Item Entry -->
+                <div class="form-section" id="itemEntrySection">
+                    <div class="section-header" onclick="toggleSection('itemEntry')">
+                        <h2><i class="fas fa-box"></i> Item Entry</h2>
+                        <i class="fas fa-chevron-down toggle-icon" id="itemEntryToggle"></i>
+                    </div>
+                    <div class="section-content" id="itemEntryContent">
+                        <div class="item-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="itemName">Item Name <span class="required">*</span></label>
+                                    <div class="dropdown-container">
+                                        <input type="text" id="itemName" class="form-control searchable-dropdown" placeholder="Search item...">
+                                        <ul class="dropdown-list" id="itemList"></ul>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="itemCode">Item Code</label>
+                                    <input type="text" id="itemCode" class="form-control" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="uom">UOM</label>
+                                    <input type="text" id="uom" class="form-control" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="rate">Rate (₹)</label>
+                                    <input type="number" id="rate" class="form-control" step="0.01" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quantity">Quantity <span class="required">*</span></label>
+                                    <input type="number" id="quantity" class="form-control" step="0.01" min="0" placeholder="Enter quantity">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount">Amount (₹)</label>
+                                    <input type="number" id="amount" class="form-control" step="0.01" readonly>
+                                </div>
+                            </div>
+
+                            <div class="add-item-section">
+                                <button type="button" id="addItemBtn" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Add Item
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Items Table -->
+                        <div class="items-table-container">
+                            <table class="items-table" id="itemsTable">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Item Code</th>
+                                        <th>Item Name</th>
+                                        <th>UOM</th>
+                                        <th>Quantity</th>
+                                        <th>Rate (₹)</th>
+                                        <th>Amount (₹)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody">
+                                    <!-- Dynamic rows will be added here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="6"><strong>Total Amount:</strong></td>
+                                        <td><strong>₹ <span id="totalAmount">0.00</span></strong></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="button" id="clearAllBtn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                    <button type="submit" id="saveDataBtn" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save Data
+                    </button>
+                    <button type="button" id="exportPrintBtn" class="btn btn-info" disabled>
+                        <i class="fas fa-file-pdf"></i> Export & Print
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <i class="fas fa-check-circle"></i>
+                <h3>Success!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">CRV saved successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('successModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error</h3>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">An error occurred!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('errorModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header warning">
+                <i class="fas fa-question-circle"></i>
+                <h3>Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('confirmModal')">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

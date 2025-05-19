@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Vendor - Ration Management</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>Officers Mess</span>
+                </div>
+                <nav class="main-nav">
+                    <div class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Data</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">
+                                <i class="fas fa-receipt"></i>
+                                Add CRV
+                            </a>
+                            <a href="add_items.html" class="dropdown-item">
+                                <i class="fas fa-box"></i>
+                                Add Items
+                            </a>
+                            <a href="add_category.html" class="dropdown-item">
+                                <i class="fas fa-tags"></i>
+                                Add Category
+                            </a>
+                            <a href="add_vendor.html" class="dropdown-item active">
+                                <i class="fas fa-truck"></i>
+                                Add Vendor
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transactions</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <div class="dropdown-menu">
+                            <a href="view_crv.html" class="dropdown-item">
+                                <i class="fas fa-eye"></i>
+                                View CRV
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Feedback</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-truck"></i> Add New Vendor</h1>
+                <p>Register new vendor/supplier information</p>
+            </div>
+
+            <form id="addVendorForm" class="crv-form">
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-info-circle"></i> Basic Information</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="supplierName">Supplier Name <span class="required">*</span></label>
+                                <input type="text" id="supplierName" name="supplier_name" class="form-control" 
+                                       placeholder="Enter supplier name..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supplierCode">Supplier Code <span class="required">*</span></label>
+                                <input type="text" id="supplierCode" name="supplier_code" class="form-control" 
+                                       placeholder="Enter unique supplier code..." required>
+                                <small class="form-help">Must be unique (e.g., SUP001, AGR001)</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPerson">Contact Person</label>
+                                <input type="text" id="contactPerson" name="contact_person" class="form-control" 
+                                       placeholder="Enter contact person name...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supplierMobile">Mobile Number</label>
+                                <input type="tel" id="supplierMobile" name="supplier_mobile" class="form-control" 
+                                       placeholder="Enter mobile number..." pattern="[0-9]{10}">
+                                <small class="form-help">Enter 10-digit mobile number</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supplierEmail">Email Address</label>
+                                <input type="email" id="supplierEmail" name="supplier_email" class="form-control" 
+                                       placeholder="Enter email address...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vendorStatus">Status</label>
+                                <select id="vendorStatus" name="is_active" class="form-control">
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Information Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-map-marker-alt"></i> Address Information</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="supplierAddress">Complete Address</label>
+                            <textarea id="supplierAddress" name="supplier_address" class="form-control" 
+                                      rows="4" placeholder="Enter complete address with city, state, and pincode..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-clipboard"></i> Additional Information</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="supplierRemark">Remarks / Notes</label>
+                            <textarea id="supplierRemark" name="remark" class="form-control" 
+                                      rows="3" placeholder="Enter any additional notes or remarks..."></textarea>
+                        </div>
+
+                        <!-- Vendor Categories -->
+                        <div class="form-group">
+                            <label>Vendor Specialization</label>
+                            <div class="vendor-categories">
+                                <div class="checkbox-grid">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="RATION">
+                                        <i class="fas fa-seedling"></i>
+                                        Ration Items
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="GROCERY">
+                                        <i class="fas fa-shopping-basket"></i>
+                                        Grocery Items
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="VEGETABLE">
+                                        <i class="fas fa-carrot"></i>
+                                        Vegetables
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="MEAT">
+                                        <i class="fas fa-drumstick-bite"></i>
+                                        Meat & Poultry
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="DAIRY">
+                                        <i class="fas fa-cheese"></i>
+                                        Dairy Products
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="CLEANING">
+                                        <i class="fas fa-broom"></i>
+                                        Cleaning Supplies
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="STATIONARY">
+                                        <i class="fas fa-pen"></i>
+                                        Stationary
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialization[]" value="EQUIPMENT">
+                                        <i class="fas fa-tools"></i>
+                                        Equipment
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="button" id="clearFormBtn" class="btn btn-secondary">
+                        <i class="fas fa-eraser"></i> Clear Form
+                    </button>
+                    <button type="submit" id="saveVendorBtn" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save Vendor
+                    </button>
+                    <button type="button" id="viewVendorsBtn" class="btn btn-info">
+                        <i class="fas fa-list"></i> View All Vendors
+                    </button>
+                </div>
+            </form>
+
+            <!-- Recent Vendors Section -->
+            <div class="form-section" style="margin-top: 2rem;">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> Recently Added Vendors</h2>
+                </div>
+                <div class="section-content">
+                    <div class="vendors-grid" id="vendorsGrid">
+                        <div class="loading-placeholder">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading vendors...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <i class="fas fa-check-circle"></i>
+                <h3>Success!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Vendor added successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('successModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error</h3>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">An error occurred!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('errorModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .vendor-categories {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #f8f9fa;
+        }
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .checkbox-item:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        .checkbox-item i {
+            font-size: 1.2rem;
+            color: #3498db;
+        }
+        .vendors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .vendor-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        .vendor-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+        }
+        .vendor-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .vendor-info {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin: 0.25rem 0;
+        }
+        .vendor-info i {
+            width: 16px;
+            color: #3498db;
+        }
+        .vendor-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .form-help {
+            display: block;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .loading-placeholder {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+        }
+    </style>
+
+    <script src="assets/js/add_vendor.js"></script>
+</body>
+</html>

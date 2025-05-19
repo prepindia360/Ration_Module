@@ -1,0 +1,21 @@
+{
+    "name": "yourname/ration-management-system",
+    "description": "Officers Mess Ration Management System with CRV functionality",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "tecnickcom/tcpdf": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "echo 'Installation completed successfully!'"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
